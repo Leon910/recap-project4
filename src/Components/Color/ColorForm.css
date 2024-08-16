@@ -1,3 +1,5 @@
+/* align lables underneath each other via flex column */
+
 .form-flex {
   display: flex;
   flex-direction: column;
