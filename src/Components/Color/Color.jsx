@@ -1,20 +1,14 @@
 import "./Color.css";
-import { initialColors } from "../../lib/colors";
 
-export default function ColorCard() {
+export default function ColorCard({ color }) {
   return (
-    <ul className="color-list">
-      {initialColors.map((color) => (
-        <li
-          key={color.id}
-          className="color-card-headline"
-          style={{ backgroundColor: color.hex, color: color.contrastText }}
-        >
-          {color.hex}
-          {color.role}
-          {color.contrastText}
-        </li>
-      ))}
-    </ul>
+    <div
+      className="color-card"
+      style={{ backgroundColor: color.hex, color: color.contrastText }}
+    >
+      <p className="color-card-headline">{color.hex}</p>
+      <p>{color.role}</p>
+      <p>contrast: {color.contrastText}</p>
+    </div>
   );
 }

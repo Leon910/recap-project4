@@ -1,11 +1,14 @@
 import "./App.css";
 import ColorCard from "./Components/Color/Color";
+import { initialColors } from "./lib/colors";
 
 function App() {
   return (
     <>
       <h1>Theme Creator</h1>
-      <ColorCard />
+      {initialColors.map((color) => {
+        return <ColorCard key={color.id} color={color} />;
+      })}
     </>
   );
 }
