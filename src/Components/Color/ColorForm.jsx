@@ -1,37 +1,39 @@
 import { useState } from "react";
+import "./ColorForm.css";
 
 export default function ColorForm() {
-  const [role, setRole] = useState("");
-  const [hex, setHex] = useState("");
-  const [contrastText, setContrastText] = useState("");
+  const [role, setRole] = useState("some color");
+  const [hex, setHex] = useState("#125413");
+  const [contrastText, setContrastText] = useState("#ffffff");
 
-  function handleInput(event) {
+  function handleSubmit(event) {
     event.preventDefault();
-    console.log("works");
+    console.log("submit works");
   }
 
   function handleClick() {}
 
   return (
-    <form onSubmit={handleInput} className="form-flex">
-      <label htmlFor="searchTerm">Role</label>
+    <form onSubmit={handleSubmit} className="form-flex">
+      <label htmlFor="role">Role</label>
       <input
-        name="searchTerm"
-        id="searchTerm"
+        type="text"
+        id="role"
+        name="role"
         value={role}
         onChange={(event) => setRole(event.target.value)}
       />
-      <label htmlFor="searchTerm">Hex</label>
+      <label htmlFor="hex">Hex</label>
       <input
-        name="searchTerm"
-        id="searchTerm"
+        name="hex"
+        id="hex"
         value={hex}
         onChange={(event) => setHex(event.target.value)}
       />
-      <label htmlFor="searchTerm">Contrast Text</label>
+      <label htmlFor="contrastText">Contrast Text</label>
       <input
-        name="searchTerm"
-        id="searchTerm"
+        name="contrastText"
+        id="contrastText"
         value={contrastText}
         onChange={(event) => setContrastText(event.target.value)}
       />
