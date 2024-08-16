@@ -6,9 +6,14 @@ function App() {
   return (
     <>
       <h1>Theme Creator</h1>
-      {initialColors.map((color) => {
-        return <ColorCard key={color.id} color={color} />;
-      })}
+      <ul style={{ listStyleType: "none" }}>
+        <li>
+          {initialColors.map((color) => {
+            return <ColorCard key={color.id} color={color} />;
+          })}
+        </li>
+      </ul>
+      ;
     </>
   );
 }
