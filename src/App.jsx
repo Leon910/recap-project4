@@ -6,6 +6,7 @@ import ColorCard from "./Components/Color/Color";
 import { initialColors } from "./lib/colors";
 /* imports the ColorForm component, which provides a form to add new colors */
 import ColorForm from "./Components/Color/ColorForm";
+/* imports the Analytics component functionalities from vercel */
 import { Analytics } from "@vercel/analytics/react";
 
 /* define the structure of the UI */
