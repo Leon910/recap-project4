@@ -3,13 +3,12 @@ import { useState } from "react";
 
 /* import a CSS file for styling the ColorForm component */
 import "./ColorForm.css";
+import ColorInput from "./ColorInput";
 
 /* implement a ColorForm component with form and three input fields */
 export default function ColorForm() {
   /* set state with default values to later be able to change the values */
-  const [role, setRole] = useState("some color");
-  const [hex, setHex] = useState("#125413");
-  const [contrastText, setContrastText] = useState("#ffffff");
+  const [role, setRole] = useState("Name your new color");
 
   /* event-handler to submit the events */
   function handleSubmit(event) {
@@ -33,19 +32,11 @@ export default function ColorForm() {
         onChange={(event) => setRole(event.target.value)}
       />
       <label htmlFor="hex">Hex</label>
-      <input
-        name="hex"
-        id="hex"
-        value={hex}
-        onChange={(event) => setHex(event.target.value)}
-      />
+      <ColorInput id="hex" defaultValue={"#FF69B4"} />
+
       <label htmlFor="contrastText">Contrast Text</label>
-      <input
-        name="contrastText"
-        id="contrastText"
-        value={contrastText}
-        onChange={(event) => setContrastText(event.target.value)}
-      />
+      <ColorInput id="contrastText" defaultValue={"#FDFEFE"} />
+
       <button onClick={handleClick}>ADD COLOR</button>
     </form>
   );
