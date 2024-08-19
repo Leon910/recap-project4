@@ -3,10 +3,14 @@ import "./Color.css";
 /* functional component named ColorCard */
 /* receives a single prop called color, which is an object */
 export default function ColorCard({ color, onDelete }) {
-  function handleClick() {
-    console.log("Delete Button works");
-    onDelete(color.id);
-  }
+  const handleDeleteClick = () => {
+    const isConfirmed = window.confirm("Really delete?");
+
+    if (isConfirmed) {
+      onDelete(color.id);
+    }
+  };
+
   return (
     <div
       /* assigns the color-card CSS class to the div */
@@ -18,7 +22,7 @@ export default function ColorCard({ color, onDelete }) {
       <p className="color-card-headline">{color.hex}</p>
       <p>{color.role}</p>
       <p>contrast: {color.contrastText}</p>
-      <button onClick={handleClick}>DELETE</button>
+      <button onClick={handleDeleteClick}>DELETE</button>
     </div>
   );
 }
