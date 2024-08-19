@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 /* component definition with "id" as unique identifier for the input element, allowing it to be targeted in the DOM and "defaultValue" as initial value for the input fields */
-export default function ColorInput({ id, defaultValue }) {
+export default function ColorInput({ id, defaultValue, onChange }) {
   /* state declaration: setInputValue updates the inputValue (holds the current value of the input) */
   const [inputValue, setInputValue] = useState(defaultValue);
 
@@ -10,7 +10,9 @@ export default function ColorInput({ id, defaultValue }) {
   /* "event.target.value" is new value entered by the user */
   /* "setInputValue" updates the "inputValue" with new value */
   function handleInputValue(event) {
-    setInputValue(event.target.value);
+    const newValue = event.target.value;
+    setInputValue(newValue);
+    onChange(newValue);
   }
 
   return (

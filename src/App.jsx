@@ -7,20 +7,27 @@ import { initialColors } from "./lib/colors";
 /* imports the ColorForm component, which provides a form to add new colors */
 import ColorForm from "./Components/Color/ColorForm";
 /* imports the Analytics component functionalities from vercel */
-import { Analytics } from "@vercel/analytics/react";
+/* import { Analytics } from "@vercel/analytics/react"; */
+import { useState } from "react";
 
 /* define the structure of the UI */
 function App() {
+  const [colors, setColors] = useState(initialColors);
+
+  const addColor = (newColor) => {
+    setColors([newColor, ...colors]);
+  };
+
   return (
     /* fragments to group multiple elements without adding extra nodes to the DOM */
     <>
       <h1>Theme Creator</h1>
-      <ColorForm />
+      <ColorForm addColor={addColor} />
       {/* Renders an unordered list without default bullet points */}
       <ul style={{ listStyleType: "none" }}>
         <li>
-          {/* iterate over the initialColors array and renders a ColorCard for each color object */}
-          {initialColors.map((color) => {
+          {/* iterate over the colors array and renders a ColorCard for each color object */}
+          {colors.map((color) => {
             /* color={color} passes the color object as a prop to the ColorCard component */
             return <ColorCard key={color.id} color={color} />;
           })}
@@ -28,7 +35,7 @@ function App() {
       </ul>
 
       {/* add vercel analytics for tracking web page traffic */}
-      <Analytics />
+      {/* <Analytics />*/}
     </>
   );
 }
