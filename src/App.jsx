@@ -26,6 +26,13 @@ function App() {
     setColors([newColor, ...colors]);
   };
 
+  /* Function to handle the deletion of a color */
+  /* callback function "color => color.id" is applied to each element (color) in the colors array. */
+  /* checks if the id of the current color is not equal to the colorId passed to handleDelete. */
+  const handleDelete = (colorId) => {
+    setColors(colors.filter((color) => color.id !== colorId));
+  };
+
   return (
     /* fragments to group multiple elements without adding extra nodes to the DOM */
     <>
@@ -37,7 +44,9 @@ function App() {
           {/* iterates over the colors array and renders a ColorCard for each color object */}
           {colors.map((color) => {
             /* color={color} passes the color object as a prop to the ColorCard component */
-            return <ColorCard key={color.id} color={color} />;
+            return (
+              <ColorCard key={color.id} color={color} onDelete={handleDelete} />
+            );
           })}
         </li>
       </ul>
