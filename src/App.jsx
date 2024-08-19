@@ -1,5 +1,7 @@
 /*  imports the CSS styles specific to the App component */
 import "./App.css";
+import "./Components/Color/Color.css";
+
 /* imports the ColorCard component */
 import ColorCard from "./Components/Color/Color";
 /* imports the initialColors array, which contains a list of color objects */
@@ -38,19 +40,21 @@ function App() {
     <>
       <h1>Theme Creator</h1>
       <ColorForm addColor={addColor} />
-      {/* Renders an unordered list without default bullet points */}
-      <ul style={{ listStyleType: "none" }}>
-        <li>
-          {/* iterates over the colors array and renders a ColorCard for each color object */}
+      {colors.length === 0 ? (
+        <p className="no-color-card-message">
+          No colors.. start by adding one!
+        </p>
+      ) : (
+        /* Renders an unordered list without default bullet points */
+        <ul style={{ listStyleType: "none" }}>
           {colors.map((color) => {
-            /* color={color} passes the color object as a prop to the ColorCard component */
             return (
+              /* color={color} passes the color object as a prop to the ColorCard component */
               <ColorCard key={color.id} color={color} onDelete={handleDelete} />
             );
           })}
-        </li>
-      </ul>
-
+        </ul>
+      )}
       {/* add vercel analytics for tracking web page traffic */}
       {/* <Analytics />*/}
     </>
