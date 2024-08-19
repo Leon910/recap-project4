@@ -12,8 +12,16 @@ import { useState } from "react";
 
 /* define the structure of the UI */
 function App() {
+  /* 
+  Declares a state variable 'colors' initialized with 'initialColors'.
+  'setColors' is a function used to update the 'colors' state.
+  */
   const [colors, setColors] = useState(initialColors);
 
+  /*
+  Function to add a new color to the list of colors.
+  It updates the 'colors' state by adding the new color at the beginning of the array.
+  */
   const addColor = (newColor) => {
     setColors([newColor, ...colors]);
   };
@@ -26,7 +34,7 @@ function App() {
       {/* Renders an unordered list without default bullet points */}
       <ul style={{ listStyleType: "none" }}>
         <li>
-          {/* iterate over the colors array and renders a ColorCard for each color object */}
+          {/* iterates over the colors array and renders a ColorCard for each color object */}
           {colors.map((color) => {
             /* color={color} passes the color object as a prop to the ColorCard component */
             return <ColorCard key={color.id} color={color} />;

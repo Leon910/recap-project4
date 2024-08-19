@@ -9,18 +9,21 @@ import { nanoid } from "nanoid";
 
 /* implement a ColorForm component with form and three input fields */
 export default function ColorForm({ addColor }) {
-  /* set state with default values to later be able to change the values */
+  /* 
+  Declare state variables for 'role', 'hex', and 'contrastText' with default values.
+  These states will hold the values input by the user for the new color.
+  */
   const [role, setRole] = useState("Name your new color");
   const [hex, setHex] = useState("#FF69B4");
   const [contrastText, setContrastText] = useState("#FDFEFE");
 
-  /* event-handler to submit the events */
+  /* event-handler for for submission and calls the handleClick function to add the new color */
   function handleSubmit(event) {
     event.preventDefault();
     handleClick();
   }
 
-  /* button click handler - not yet finished */
+  /* button click handler - creates a new color object with a unique ID */
   function handleClick() {
     const newColor = {
       id: nanoid(),
@@ -29,7 +32,13 @@ export default function ColorForm({ addColor }) {
       contrastText: contrastText,
     };
     console.log("Adding color:", newColor);
+    {
+      /* Calls the addColor function passed as a prop to add the new color to the list*/
+    }
     addColor(newColor);
+    {
+      /* Resets the form fields to their default values after submission*/
+    }
     setRole(role);
     setHex(hex);
     setContrastText(contrastText);
