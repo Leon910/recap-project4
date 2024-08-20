@@ -8,7 +8,7 @@ import ColorInput from "./ColorInput";
 import { nanoid } from "nanoid";
 
 /* implement a ColorForm component with form and three input fields */
-export default function ColorForm({ addColor }) {
+export default function ColorForm({ addColor, isEditing }) {
   /* 
   Declare state variables for 'role', 'hex', and 'contrastText' with default values.
   These states will hold the values input by the user for the new color.
@@ -69,8 +69,11 @@ export default function ColorForm({ addColor }) {
         defaultValue={contrastText}
         onChange={(value) => setContrastText(value)}
       />
-
-      <button type="submit">ADD COLOR</button>
+      {isEditing ? (
+        <button type="submit">UPDATE COLOR</button>
+      ) : (
+        <button type="submit">ADD COLOR</button>
+      )}
     </form>
   );
 }

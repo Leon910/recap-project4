@@ -38,7 +38,7 @@ export default function ColorCard({ color, onDelete, onUpdate }) {
       style={{ backgroundColor: color.hex, color: color.contrastText }}
     >
       {isEditing ? (
-        <ColorForm color={color} onSubmit={handleUpdate} />
+        <ColorForm color={color} onSubmit={handleUpdate} isEditing={true} />
       ) : (
         <>
           {/* apply styles to the paragraph and display hex, role and contrastText */}
