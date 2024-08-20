@@ -35,6 +35,15 @@ function App() {
     setColors(colors.filter((color) => color.id !== colorId));
   };
 
+  const handleColorUpdate = (updatedColor) => {
+    setColors(
+      /** checks if the current color's id matches the id of the updatedColor (the color that has been edited) */
+      colors.map((color) =>
+        color.id === updatedColor.id ? updatedColor : color
+      )
+    );
+  };
+
   return (
     /* fragments to group multiple elements without adding extra nodes to the DOM */
     <>
@@ -50,7 +59,12 @@ function App() {
           {colors.map((color) => {
             return (
               /* color={color} passes the color object as a prop to the ColorCard component */
-              <ColorCard key={color.id} color={color} onDelete={handleDelete} />
+              <ColorCard
+                key={color.id}
+                color={color}
+                onDelete={handleDelete}
+                onUpdate={handleColorUpdate}
+              />
             );
           })}
         </ul>
