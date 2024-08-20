@@ -3,7 +3,7 @@ import "./App.css";
 import "./Components/Color/Color.css";
 
 /* imports the ColorCard component */
-import ColorCard from "./Components/Color/Color";
+import ColorCard from "./Components/Color/ColorCard";
 /* imports the initialColors array, which contains a list of color objects */
 import { initialColors } from "./lib/colors";
 /* imports the ColorForm component, which provides a form to add new colors */

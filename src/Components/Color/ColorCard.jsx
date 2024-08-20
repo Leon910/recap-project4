@@ -38,7 +38,12 @@ export default function ColorCard({ color, onDelete, onUpdate }) {
       style={{ backgroundColor: color.hex, color: color.contrastText }}
     >
       {isEditing ? (
-        <ColorForm color={color} onSubmit={handleUpdate} isEditing={true} />
+        <ColorForm
+          color={color}
+          onSubmit={handleUpdate}
+          isEditing={true}
+          /** prop is passed to the ColorForm component: inform that the form is currently being used to edit an existing color rather than to add a new one */
+        />
       ) : (
         <>
           {/* apply styles to the paragraph and display hex, role and contrastText */}
