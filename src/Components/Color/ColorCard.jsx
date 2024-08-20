@@ -23,6 +23,10 @@ export default function ColorCard({ color, onDelete, onUpdate }) {
     setIsEditing(true);
   };
 
+  const handleCancelClick = () => {
+    setIsEditing(false);
+  };
+
   /* handle the update after the editing */
   const handleUpdate = (updatedColor) => {
     /** update the color with new values and give it as a prop via ColorCard to the ColorForm */
@@ -49,6 +53,7 @@ export default function ColorCard({ color, onDelete, onUpdate }) {
             isEditing={true}
             /** prop is passed to the ColorForm component: inform that the form is currently being used to edit an existing color rather than to add a new one */
           />
+          <button onClick={handleCancelClick}>CANCEL</button>
         </>
       ) : (
         <>
