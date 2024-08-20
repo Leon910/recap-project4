@@ -8,7 +8,7 @@ import ColorInput from "./ColorInput";
 import { nanoid } from "nanoid";
 
 /* implement a ColorForm component with form and three input fields */
-export default function ColorForm({ addColor }) {
+export default function ColorForm({ addColor, isEditing, onSubmit, color }) {
   /* 
   Declare state variables for 'role', 'hex', and 'contrastText' with default values.
   These states will hold the values input by the user for the new color.
@@ -17,31 +17,32 @@ export default function ColorForm({ addColor }) {
   const [hex, setHex] = useState("#FF69B4");
   const [contrastText, setContrastText] = useState("#FDFEFE");
 
-  /* event-handler for for submission and calls the handleClick function to add the new color */
   function handleSubmit(event) {
     event.preventDefault();
     handleClick();
   }
 
-  /* button click handler - creates a new color object with a unique ID */
   function handleClick() {
     const newColor = {
-      id: nanoid(),
+      id: color
+        ? color.id
+        : nanoid() /* Use existing ID if editing, or create a new one if adding */,
       role: role,
       hex: hex,
       contrastText: contrastText,
     };
-    console.log("Adding color:", newColor);
-    {
-      /* Calls the addColor function passed as a prop to add the new color to the list*/
+
+    if (isEditing) {
+      /* If editing, call the onSubmit function to update the color */
+      onSubmit(newColor);
+    } else {
+      /* If adding a new color, call the addColor function */
+      addColor(newColor);
+      /* Reset the form fields after adding a new color */
+      setRole("Name your new color");
+      setHex("#FF69B4");
+      setContrastText("#FDFEFE");
     }
-    addColor(newColor);
-    {
-      /* Resets the form fields to their default values after submission*/
-    }
-    setRole(role);
-    setHex(hex);
-    setContrastText(contrastText);
   }
 
   /* input elements are tied to state via the value attribute with the name e.g. "role" */
@@ -69,8 +70,7 @@ export default function ColorForm({ addColor }) {
         defaultValue={contrastText}
         onChange={(value) => setContrastText(value)}
       />
-
-      <button type="submit">ADD COLOR</button>
+      <button type="submit">{isEditing ? "UPDATE COLOR" : "ADD COLOR"}</button>
     </form>
   );
 }
