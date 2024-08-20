@@ -69,11 +69,7 @@ export default function ColorForm({ addColor, isEditing }) {
         defaultValue={contrastText}
         onChange={(value) => setContrastText(value)}
       />
-      {isEditing ? (
-        <button type="submit">UPDATE COLOR</button>
-      ) : (
-        <button type="submit">ADD COLOR</button>
-      )}
+      <button type="submit">{isEditing ? "UPDATE COLOR" : "ADD COLOR"}</button>
     </form>
   );
 }
