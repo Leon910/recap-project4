@@ -10,7 +10,8 @@ import { initialColors } from "./lib/colors";
 import ColorForm from "./Components/Color/ColorForm";
 /* imports the Analytics component functionalities from vercel */
 /* import { Analytics } from "@vercel/analytics/react"; */
-import { useState } from "react";
+
+import useLocalStorageState from "use-local-storage-state";
 
 /* define the structure of the UI */
 function App() {
@@ -18,7 +19,9 @@ function App() {
   Declares a state variable 'colors' initialized with 'initialColors'.
   'setColors' is a function used to update the 'colors' state.
   */
-  const [colors, setColors] = useState(initialColors);
+  const [colors, setColors] = useLocalStorageState("colors", {
+    defaultValue: initialColors,
+  });
 
   /*
   Function to add a new color to the list of colors.
