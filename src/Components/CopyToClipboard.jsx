@@ -1,8 +1,13 @@
-export default function CopyToClipboard() {
+export default function CopyToClipboard({ copiedText }) {
   /* handle the click event for copy button */
-  // const handleCopyClick = () => {
+  const handleCopyClick = async () => {
+    try {
+      await navigator.clipboard.writeText(copiedText);
+    } catch (error) {
+      console.error("Copy failed");
+    }
+  };
+  handleCopyClick();
 
-  // };
-
-  return <button>COPY</button>;
+  return <button onClick={handleCopyClick}>COPY</button>;
 }
