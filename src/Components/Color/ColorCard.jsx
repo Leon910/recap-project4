@@ -60,7 +60,7 @@ export default function ColorCard({ color, onDelete, onUpdate }) {
         <>
           {/* apply styles to the paragraph and display hex, role and contrastText */}
           <p className="color-card-headline">{color.hex}</p>
-          <CopyToClipboard />
+          <CopyToClipboard copiedText={color.hex} />
           <p>{color.role}</p>
           <p>contrast: {color.contrastText}</p>
           <button onClick={handleDeleteClick}>DELETE</button>
