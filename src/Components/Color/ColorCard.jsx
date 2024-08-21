@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Color.css";
 import ColorForm from "./ColorForm";
+import CopyToClipboard from "../CopyToClipboard";
 
 /* functional component named ColorCard */
 /* receives a single prop called color, which is an object */
@@ -59,6 +60,7 @@ export default function ColorCard({ color, onDelete, onUpdate }) {
         <>
           {/* apply styles to the paragraph and display hex, role and contrastText */}
           <p className="color-card-headline">{color.hex}</p>
+          <CopyToClipboard />
           <p>{color.role}</p>
           <p>contrast: {color.contrastText}</p>
           <button onClick={handleDeleteClick}>DELETE</button>
