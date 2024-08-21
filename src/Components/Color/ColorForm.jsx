@@ -7,7 +7,7 @@ import ColorInput from "./ColorInput";
 /* iport the nanoid API to create unique Id´s for the added colors */
 import { nanoid } from "nanoid";
 
-/* implement a ColorForm component with form and three input fields */
+/* implement a ColorForm component with form, three input fields and submit-event handler */
 export default function ColorForm({ addColor, isEditing, onSubmit, color }) {
   /* 
   Declare state variables for 'role', 'hex', and 'contrastText' with default values.
@@ -23,6 +23,7 @@ export default function ColorForm({ addColor, isEditing, onSubmit, color }) {
   }
 
   function handleClick() {
+    /** create a newColor-object and store data inside */
     const newColor = {
       id: color
         ? color.id
