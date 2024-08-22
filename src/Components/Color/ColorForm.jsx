@@ -22,7 +22,10 @@ export default function ColorForm({ addColor, isEditing, onSubmit, color }) {
     handleClick();
   }
 
-  function handleClick() {
+  async function handleClick() {
+    const contrastResult = await checkContrast(hex, contrastText);
+    const overallResult = contrastResult.overall;
+
     /** create a newColor-object and store data inside */
     const newColor = {
       id: color
@@ -31,6 +34,7 @@ export default function ColorForm({ addColor, isEditing, onSubmit, color }) {
       role: role,
       hex: hex,
       contrastText: contrastText,
+      contrastStatus: overallResult,
     };
 
     if (isEditing) {
@@ -71,8 +75,6 @@ export default function ColorForm({ addColor, isEditing, onSubmit, color }) {
       console.error("Error checking contrast ratio:", error);
     }
   }
-
-  console.log(checkContrast());
 
   /* input elements are tied to state via the value attribute with the name e.g. "role" */
   /* onChange updates the corresponding state when the user types into the input field */
