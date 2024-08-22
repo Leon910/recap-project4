@@ -46,6 +46,34 @@ export default function ColorForm({ addColor, isEditing, onSubmit, color }) {
     }
   }
 
+  async function checkContrast() {
+    try {
+      const response = await fetch(
+        "https://www.aremycolorsaccessible.com/api/are-they",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            colors: [hex, contrastText],
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch data!");
+      }
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      console.error("Error checking contrast ratio:", error);
+    }
+  }
+
+  console.log(checkContrast());
+
   /* input elements are tied to state via the value attribute with the name e.g. "role" */
   /* onChange updates the corresponding state when the user types into the input field */
   return (
