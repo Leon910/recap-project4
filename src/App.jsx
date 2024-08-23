@@ -14,7 +14,7 @@ import ColorForm from "./Components/Color/ColorForm";
 import useLocalStorageState from "use-local-storage-state";
 
 /* define the structure of the UI */
-function App() {
+export default function App() {
   /* 
   Declares a state variable 'colors' initialized with 'initialColors'.
   'setColors' is a function used to update the 'colors' state.
@@ -77,5 +77,3 @@ function App() {
     </>
   );
 }
-
-export default App;

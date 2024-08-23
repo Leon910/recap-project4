@@ -9,7 +9,6 @@ import CopyToClipboard from "../CopyToClipboard";
 export default function ColorCard({ color, onDelete, onUpdate }) {
   /* set State for the EDIT-button: track if the color-card is in edit mode */
   const [isEditing, setIsEditing] = useState(false);
-
   /* handler function to delete the color-card */
   const handleDeleteClick = () => {
     const isConfirmed = window.confirm("Really delete?");
@@ -35,6 +34,19 @@ export default function ColorCard({ color, onDelete, onUpdate }) {
     setIsEditing(false);
   };
 
+  const getContrastMessageStyle = () => {
+    switch (color.contrastStatus) {
+      case "Yup":
+        return { color: "green" };
+      case "Kinda":
+        return { color: "orange" };
+      case "Nope":
+        return { color: "red" };
+      default:
+        return {};
+    }
+  };
+
   return (
     <div
       /* assigns the color-card CSS class to the div */
@@ -47,7 +59,11 @@ export default function ColorCard({ color, onDelete, onUpdate }) {
           <p className="color-card-headline">{color.hex}</p>
           <p>{color.role}</p>
           <p>contrast: {color.contrastText}</p>
-
+          {color.contrastStatus && (
+            <p style={getContrastMessageStyle()}>
+              Overall Contrast Score: {color.contrastStatus}
+            </p>
+          )}
           <ColorForm
             color={color}
             onSubmit={handleUpdate}
@@ -63,6 +79,11 @@ export default function ColorCard({ color, onDelete, onUpdate }) {
           <CopyToClipboard copiedText={color.hex} />
           <p>{color.role}</p>
           <p>contrast: {color.contrastText}</p>
+          {color.contrastStatus && (
+            <p style={getContrastMessageStyle()}>
+              Overall Contrast Score: {color.contrastStatus}
+            </p>
+          )}
           <button onClick={handleDeleteClick}>DELETE</button>
           <button onClick={handleEditClick}>EDIT</button>
         </>
