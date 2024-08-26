@@ -1,6 +1,7 @@
 /*  imports the CSS styles specific to the App component */
 import "./App.css";
 import "./Components/Color/Color.css";
+import { initialThemes } from "./lib/themes";
 
 /* imports the ColorCard component */
 import ColorCard from "./Components/Color/ColorCard";
@@ -19,10 +20,17 @@ export default function App() {
   Declares a state variable 'colors' initialized with 'initialColors'.
   'setColors' is a function used to update the 'colors' state.
   */
+
+  const [themes, setThemes] = useLocalStorageState("themes", {
+    defaultValue: initialThemes,
+  });
+
   const [colors, setColors] = useLocalStorageState("colors", {
     defaultValue: initialColors,
   });
 
+  console.log(themes);
+  console.log("testing:", setThemes);
   /*
   Function to add a new color to the list of colors.
   It updates the 'colors' state by adding the new color at the beginning of the array.
