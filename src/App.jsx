@@ -2,6 +2,7 @@
 import "./App.css";
 import "./Components/Color/Color.css";
 import { initialThemes } from "./lib/themes";
+import { useState } from "react";
 
 /* imports the ColorCard component */
 import ColorCard from "./Components/Color/ColorCard";
@@ -25,12 +26,17 @@ export default function App() {
     defaultValue: initialThemes,
   });
 
+  const [currentThemeId, setCurrentThemeId] = useState(themes[0].id);
+
+  console.log(currentThemeId);
+  console.log("setting Current Theme:", setCurrentThemeId);
+
   const [colors, setColors] = useLocalStorageState("colors", {
     defaultValue: initialColors,
   });
 
   console.log(themes);
-  console.log("testing:", setThemes);
+  console.log("setting Theme:", setThemes);
   /*
   Function to add a new color to the list of colors.
   It updates the 'colors' state by adding the new color at the beginning of the array.
