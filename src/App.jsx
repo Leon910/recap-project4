@@ -28,21 +28,25 @@ export default function App() {
 
   const [currentThemeId, setCurrentThemeId] = useState(themes[0].id);
 
-  console.log(currentThemeId);
-  console.log("setting Current Theme:", setCurrentThemeId);
-
   const [colors, setColors] = useLocalStorageState("colors", {
     defaultValue: initialColors,
   });
 
-  console.log(themes);
-  console.log("setting Theme:", setThemes);
   /*
   Function to add a new color to the list of colors.
   It updates the 'colors' state by adding the new color at the beginning of the array.
   */
   const addColor = (newColor) => {
     setColors([newColor, ...colors]);
+
+    const updatedThemes = initialThemes.map((theme) => {
+      if (theme.id === currentThemeId) {
+        return { ...theme, colors: [newColor.id, ...theme.colors] };
+      }
+      return theme;
+    });
+
+    setThemes(updatedThemes);
   };
 
   /* Function to handle the deletion of a color */
@@ -65,6 +69,18 @@ export default function App() {
     /* fragments to group multiple elements without adding extra nodes to the DOM */
     <>
       <h1>Theme Creator</h1>
+      <label htmlFor="theme-selector"></label>
+      <select
+        id="theme-selector"
+        value={currentThemeId}
+        onChange={(event) => setCurrentThemeId(event.target.value)}
+      >
+        {themes.map((theme) => (
+          <option key={theme.id} value={theme.id}>
+            {theme.name}
+          </option>
+        ))}
+      </select>
       <ColorForm addColor={addColor} />
       {colors.length === 0 ? (
         <p className="no-color-card-message">
