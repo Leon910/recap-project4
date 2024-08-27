@@ -30,13 +30,13 @@ export default function App() {
 
   const currentTheme = themes.find((theme) => theme.id === currentThemeId);
 
-  const themeColors = initialColors.filter((color) =>
-    currentTheme.colors.includes(color.id)
-  );
-
   const [colors, setColors] = useLocalStorageState("colors", {
     defaultValue: initialColors,
   });
+
+  const themeColors = colors.filter((color) =>
+    currentTheme.colors.includes(color.id)
+  );
 
   /*
   Function to add a new color to the list of colors.
