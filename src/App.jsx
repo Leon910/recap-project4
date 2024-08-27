@@ -28,6 +28,12 @@ export default function App() {
 
   const [currentThemeId, setCurrentThemeId] = useState(themes[0].id);
 
+  const currentTheme = themes.find((theme) => theme.id === currentThemeId);
+
+  const themeColors = initialColors.filter((color) =>
+    currentTheme.colors.includes(color.id)
+  );
+
   const [colors, setColors] = useLocalStorageState("colors", {
     defaultValue: initialColors,
   });
@@ -36,10 +42,12 @@ export default function App() {
   Function to add a new color to the list of colors.
   It updates the 'colors' state by adding the new color at the beginning of the array.
   */
+
+  /* add-color logic not yet finished */
   const addColor = (newColor) => {
     setColors([newColor, ...colors]);
 
-    const updatedThemes = initialThemes.map((theme) => {
+    const updatedThemes = themes.map((theme) => {
       if (theme.id === currentThemeId) {
         return { ...theme, colors: [newColor.id, ...theme.colors] };
       }
@@ -65,6 +73,28 @@ export default function App() {
     );
   };
 
+  return (
+    <ThemeDisplay
+      colors={themeColors}
+      addColor={addColor}
+      handleDelete={handleDelete}
+      handleColorUpdate={handleColorUpdate}
+      currentThemeId={currentThemeId}
+      themes={themes}
+      setCurrentThemeId={setCurrentThemeId}
+    />
+  );
+}
+
+export function ThemeDisplay({
+  colors,
+  addColor,
+  handleDelete,
+  handleColorUpdate,
+  currentThemeId,
+  themes,
+  setCurrentThemeId,
+}) {
   return (
     /* fragments to group multiple elements without adding extra nodes to the DOM */
     <>
